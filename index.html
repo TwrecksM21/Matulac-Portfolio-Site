@@ -8,6 +8,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  
+  .gallery {
+            .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500%, 1fr));
+            gap: 20px;
+            padding: 20px;
+            
+        }
+        video {
+            width:500%;
+            height: auto;
+            border-radius: 8px;
+      }
+    }
   :root{
     --bg: #10141b;
     --bg-2: #151b24;
@@ -121,19 +136,42 @@
   section{ position: relative; z-index: 1; }
 
   /* ---------- HERO ---------- */
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  z-index: 0;
+}
+
   #hero{
     min-height: 100vh;
     display:flex; align-items:center;
     padding: 120px 8vw 80px;
+    position: relative;
+    overflow: hidden;
     background:
       radial-gradient(ellipse 60% 50% at 80% 20%, rgba(95,212,196,0.08), transparent),
       radial-gradient(ellipse 50% 40% at 15% 85%, rgba(255,107,61,0.10), transparent),
       var(--bg);
     border-bottom: 1px solid var(--line);
   }
+  #hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background: rgba(16,20,27,0.6);
+    z-index: 0;
+  }
   #hero .hero-grid{
+    position: relative;
+    z-index: 1;
     display:grid; grid-template-columns: 1.25fr 0.75fr; gap: 56px; align-items:center; width:100%;
   }
+  #hero .scroll-cue{ z-index: 1; }
   .monitor{
     position: relative;
     background: var(--panel);
@@ -211,10 +249,10 @@
     margin: 0 0 18px;
     text-transform: uppercase;
   }
-  h1.name .last{ color: var(--text-faint); -webkit-text-stroke: 1px var(--text-faint); color: transparent; }
+  h1.name .last{ color: var(white); -webkit-text-stroke: 3px var(white); color: red; }
   .hero-role{
-    font-size: clamp(16px, 2.4vw, 22px);
-    color: var(--text-dim);
+    font-size: clamp(22px, 3vw, 22px);
+    color: var(white);
     max-width: 640px;
     line-height: 1.5;
     margin: 0 0 40px;
@@ -444,6 +482,7 @@
 </head>
 <body>
 
+  
   <div id="scrubber">
     <div class="rec-dot"></div>
     <div class="tc mono" id="tcReadout">00:00:00:00</div>
@@ -465,6 +504,9 @@
   </div>
 
   <section id="hero">
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="Background Tech.mp4" type="video/mp4">
+    </video>
     <div class="hero-grid">
       <div>
         <div class="hero-tag"><span class="dot"></span> GUIMBAL, ILOILO, PH</div>
@@ -516,7 +558,7 @@
       <div class="facts">
         <div class="row"><div class="k">Location</div><div class="v">Brgy. Particion, Guimbal, Iloilo</div></div>
         <div class="row"><div class="k">Education</div><div class="v">BS Computer Engineering — University of San Agustin, 2019–2024</div></div>
-        <div class="row"><div class="k">Currently</div><div class="v">Tourism Staff (Marketing) / IT Staff — Concepcion Tourism Office</div></div>
+        <div class="row"><div class="k">Recent Job</div><div class="v">Tourism Staff (Marketing) / IT Staff — Concepcion Tourism Office</div></div>
         <div class="row"><div class="k">Also Does</div><div class="v">Data Encoding, Systems Monitoring, Booking Systems</div></div>
         <div class="row"><div class="k">Certified In</div><div class="v">Social Media Marketing — HP LIFE</div></div>
         <div class="row"><div class="k">Contact</div><div class="v">rexmarm@gmail.com</div></div>
@@ -612,6 +654,61 @@
     <div class="sec-head"><span class="idx mono">A4</span><h2>The Feed</h2><div class="rule"></div></div>
     <p class="intro">Every project I've shot, edited, or built pulled straight from the source.
     </p>
+    <div class="sec-head"><span class="idx mono"></span><h1>Publication Materials and Video Edits</h1><div class="rule"></div>
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <a href="Lin ay.jpg"_blank">
+           <img src="Lin ay.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Steam Fair 2024.jpg"_blank">
+           <img src="Steam Fair 2024.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Talabahan Food poster.jpg"_blank">
+           <img src="Talabahan Food poster.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Mother's Day.jpg"_blank">
+           <img src="Mother's Day.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Talabahan Menu 2.jpg"_blank">
+           <img src="Talabahan Menu 2.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Earth Day.jpg"_blank">
+           <img src="Earth Day.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Tourist Arrival.jpg"_blank">
+           <img src="Tourist Arrival.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Guest.jpg"_blank">
+           <img src="Guest.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Holy Week Tourist.jpg"_blank">
+           <img src="Holy Week Tourist.jpg" alt="Click to view full photo" width="300">
+        </a>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Earth Hour.jpg"_blank">
+           <img src="Earth Hour.jpg" alt="Click to view full photo" width>
+        </a>
+      </figure>
+      
+      </div>
+    </div>
 
     <div class="caption-card" style="margin-bottom:40px;">
       <div class="cap-label">// portfolio.log — full archive</div>
@@ -624,6 +721,8 @@
         </a>
       </div>
     </div>
+
+    
 
     <div class="caption-card" style="margin-bottom:40px;">
       <div class="cap-label">// channels.log — pages managed end to end</div>
@@ -643,47 +742,62 @@
       </div>
     </div>
 
-
+  </section>
 
   <section id="gallery" class="sec">
     <div class="sec-head"><span class="idx mono">A5</span><h2>Gallery</h2><div class="rule"></div></div>
-    <p class="intro">Photo proof of the work — event coverage, shoots, and the day-to-day.
-   <span class="mono">&lt;figure&gt;</span> block below, matching the pattern.</p>
+    <p class="intro">Photo proof of the work — event coverage, shoots, and the day-to-day.</p>
 
     <div class="gallery-grid">
       <!-- EDIT HERE: duplicate this <figure> block for each new photo.
            Replace "gallery/photo-1.jpg" with your image's filename,
            and the <figcaption> text with a short caption. -->
       <figure class="gallery-item">
-        <img src="Tourism 1.jpg" width="300" >
+        <a href="Tourism 1.jpg" target="_blank">
+           <img src="Tourism 1.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="Tourism 2.jpg" width="300" object-position: center >
+        <a href="Tourism 2.jpg" target="_blank">
+           <img src="Tourism 2.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="Tourism 3.jpg" width="300" object-position: center>
+        <a href="Tourism 3.jpg" target="_blank">
+           <img src="Tourism 3.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="Tourism 4.jpg"object-position: center width="300" >
+        <a href="Tourism 4.jpg" target="_blank">
+           <img src="Tourism 4.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="Innovate 1.jpg" object-fit: cover width="300" >
+        <a href="Innovate 1.jpg" target="_blank">
+           <img src="Innovate 1.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
       <figure class="gallery-item" >
-        <img src="Innovate 2.jpg" object-fit: cover width="300" >
+        <a href="Innovate 2.jpg" target="_blank">
+           <img src="Innovate 2.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
       <figure class="gallery-item" >
-        <img src="Innovate 3.jpg" object-fit: cover  width= "300" >
+        <a href="Innovate 3.jpg" target="_blank">
+           <img src="Innovate 3.jpg" alt="Click to view full photo" width="300">
+        </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
       <figure class="gallery-item" >
-        <img src="Innovate 4.jpg" object-fit: cover  width="300"  >
+        <a href="Innovate 4.jpg" target="_blank">
+           <img src="Innovate 4.jpg" alt = "Click to view full photo" width="300">
+        </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
     
@@ -698,8 +812,8 @@
       <!-- EDIT HERE: duplicate this .project-card block for each new project -->
       <div class="project-card">
         <div class="cap-label">// project.log — 01</div>
-        <h3>Online Booking System</h3>
-        <div class="org">Concepcion Tourism Office</div>
+        <h3><a href="https://sites.google.com/view/concepcion-booking-form/home?pli=1 target="_blanka>Online Booking System</h3></a>
+        <div class="org"> Concepcion Tourism Office</div> 
         <p>Designed and built a JavaScript-based online booking tool from concept to a fully working
         system, cutting down guest wait times for resorts and island trips around town.</p>
         <div class="tags">
@@ -711,7 +825,7 @@
 
       <div class="project-card">
         <div class="cap-label">// project.log — 02</div>
-        <h3>PHYDROLITE (Development of Water Quality Monitoring System) </h3>
+        <h3><a href="FULL-RESEARCH-FINAL.pdf" target="_blank"> pHydrolite (DEVELOPMENT OF SMART DRINKING WATER QUALITY MONITORING SYSTEM) </h3></a>
         <div class="org">Research Project/Research Thesis</div>
         <p>Poor management of sanitation services is a growing problem that is contaminating drinking water in households. 
           Apart from other related studies, the researchers have different real-time monitoring of drinking water quality,
@@ -784,68 +898,6 @@
   }
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
-  // ---- Works feed: paste a Google Drive or YouTube link, embed it permanently ----
-  const feed = document.getElementById('feed');
-  let feedEmpty = document.getElementById('feedEmpty');
-  const linkInput = document.getElementById('mediaLinkInput');
-  const addLinkBtn = document.getElementById('addLinkBtn');
-  const linkHint = document.getElementById('linkHint');
-
-  function parseMediaLink(raw){
-    const url = raw.trim();
-
-    // YouTube: watch?v=, youtu.be/, shorts/
-    let m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{6,})/);
-    if(m) return { type: 'video', embed: `https://www.youtube.com/embed/${m[1]}`, label: '▶ YOUTUBE' };
-
-    // Google Drive: /file/d/ID/..., open?id=ID, uc?id=ID
-    m = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/) ||
-        url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-    if(m && url.includes('drive.google.com')) return { type: 'drive', embed: `https://drive.google.com/file/d/${m[1]}/preview`, label: '◆ DRIVE' };
-
-    return null;
-  }
-
-  function addMediaLink(raw){
-    const parsed = parseMediaLink(raw);
-    if(!parsed){
-      linkHint.textContent = "Couldn't read that link — paste a Google Drive share link or a YouTube URL.";
-      linkHint.classList.add('err');
-      return;
-    }
-    linkHint.textContent = '';
-    linkHint.classList.remove('err');
-    if(feedEmpty){ feedEmpty.remove(); feedEmpty = null; }
-
-    const card = document.createElement('div');
-    card.className = 'card';
-
-    const frame = document.createElement('iframe');
-    frame.src = parsed.embed;
-    frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-    frame.setAttribute('allowfullscreen', '');
-    frame.loading = 'lazy';
-    card.appendChild(frame);
-
-    const label = document.createElement('div');
-    label.className = 'label';
-    const kind = document.createElement('span');
-    kind.className = 'kind';
-    kind.textContent = parsed.label;
-    label.appendChild(kind);
-    card.appendChild(label);
-
-    feed.appendChild(card);
-    linkInput.value = '';
-  }
-
-  addLinkBtn.addEventListener('click', () => {
-    if(linkInput.value.trim()) addMediaLink(linkInput.value);
-  });
-  linkInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter' && linkInput.value.trim()) addMediaLink(linkInput.value);
-  });
 </script>
 
 </body>
