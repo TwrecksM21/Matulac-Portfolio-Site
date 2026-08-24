@@ -429,10 +429,27 @@
     margin:0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
     overflow:hidden;
   }
+  .gallery-item a{ display:block; }
   .gallery-item img{
     width:100%; aspect-ratio: 4/5; object-fit: cover; display:block;
   }
   .gallery-item figcaption{
+    padding: 10px 14px; font-family:'JetBrains Mono',monospace; font-size: 11.5px; color: var(--text-dim);
+  }
+
+  /* ---------- VIDEO GALLERY ---------- */
+  .video-grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .video-item{
+    margin:0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    overflow:hidden;
+  }
+  .video-item video{
+    width:100%; aspect-ratio: 16/9; object-fit: cover; display:block; background:#000;
+  }
+  .video-item figcaption{
     padding: 10px 14px; font-family:'JetBrains Mono',monospace; font-size: 11.5px; color: var(--text-dim);
   }
 
@@ -498,6 +515,7 @@
       <a href="#skills">Skills</a>
       <a href="#works">Feed</a>
       <a href="#gallery">Gallery</a>
+      <a href="#video-gallery">Videos</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -654,61 +672,65 @@
     <div class="sec-head"><span class="idx mono">A4</span><h2>The Feed</h2><div class="rule"></div></div>
     <p class="intro">Every project I've shot, edited, or built pulled straight from the source.
     </p>
-    <div class="sec-head"><span class="idx mono"></span><h1>Publication Materials and Video Edits</h1><div class="rule"></div>
+
+    <div class="cap-label" style="margin: 32px 0 16px;">// materials.log</div>
+    <h3 class="sub-head">Publication Materials and Video Edits</h3>
     <div class="gallery-grid">
       <figure class="gallery-item">
-        <a href="Lin ay.jpg"_blank">
-           <img src="Lin ay.jpg" alt="Click to view full photo" width="300">
+        <a href="Lin%20ay.jpg" target="_blank">
+           <img src="Lin%20ay.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Steam Fair 2024.jpg"_blank">
-           <img src="Steam Fair 2024.jpg" alt="Click to view full photo" width="300">
+        <a href="Steam%20Fair%202024.jpg" target="_blank">
+           <img src="Steam%20Fair%202024.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Talabahan Food poster.jpg"_blank">
-           <img src="Talabahan Food poster.jpg" alt="Click to view full photo" width="300">
+        <a href="Talabahan%20Food%20poster.jpg" target="_blank">
+           <img src="Talabahan%20Food%20poster.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Mother's Day.jpg"_blank">
-           <img src="Mother's Day.jpg" alt="Click to view full photo" width="300">
+        <a href="Mother%27s%20Day.jpg" target="_blank">
+           <img src="Mother%27s%20Day.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Talabahan Menu 2.jpg"_blank">
-           <img src="Talabahan Menu 2.jpg" alt="Click to view full photo" width="300">
+        <a href="Talabahan%20Menu%202.jpg" target="_blank">
+           <img src="Talabahan%20Menu%202.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Earth Day.jpg"_blank">
-           <img src="Earth Day.jpg" alt="Click to view full photo" width="300">
+        <a href="Earth%20Day.jpg" target="_blank">
+           <img src="Earth%20Day.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Tourist Arrival.jpg"_blank">
-           <img src="Tourist Arrival.jpg" alt="Click to view full photo" width="300">
+        <a href="Tourist%20Arrival.jpg" target="_blank">
+           <img src="Tourist%20Arrival.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Guest.jpg"_blank">
+        <a href="Guest.jpg" target="_blank">
            <img src="Guest.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Holy Week Tourist.jpg"_blank">
-           <img src="Holy Week Tourist.jpg" alt="Click to view full photo" width="300">
+        <a href="Holy%20Week%20Tourist.jpg" target="_blank">
+           <img src="Holy%20Week%20Tourist.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
       <figure class="gallery-item">
-        <a href="Earth Hour.jpg"_blank">
-           <img src="Earth Hour.jpg" alt="Click to view full photo" width>
+        <a href="Earth%20Hour.jpg" target="_blank">
+           <img src="Earth%20Hour.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      
-      </div>
+     >
     </div>
+ 
+    </div>
+  </section>
 
     <div class="caption-card" style="margin-bottom:40px;">
       <div class="cap-label">// portfolio.log — full archive</div>
@@ -721,8 +743,6 @@
         </a>
       </div>
     </div>
-
-    
 
     <div class="caption-card" style="margin-bottom:40px;">
       <div class="cap-label">// channels.log — pages managed end to end</div>
@@ -753,66 +773,79 @@
            Replace "gallery/photo-1.jpg" with your image's filename,
            and the <figcaption> text with a short caption. -->
       <figure class="gallery-item">
-        <a href="Tourism 1.jpg" target="_blank">
-           <img src="Tourism 1.jpg" alt="Click to view full photo" width="300">
+        <a href="Tourism%201.jpg" target="_blank">
+           <img src="Tourism%201.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <a href="Tourism 2.jpg" target="_blank">
-           <img src="Tourism 2.jpg" alt="Click to view full photo" width="300">
+        <a href="Tourism%202.jpg" target="_blank">
+           <img src="Tourism%202.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <a href="Tourism 3.jpg" target="_blank">
-           <img src="Tourism 3.jpg" alt="Click to view full photo" width="300">
+        <a href="Tourism%203.jpg" target="_blank">
+           <img src="Tourism%203.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <a href="Tourism 4.jpg" target="_blank">
-           <img src="Tourism 4.jpg" alt="Click to view full photo" width="300">
+        <a href="Tourism%204.jpg" target="_blank">
+           <img src="Tourism%204.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
       <figure class="gallery-item">
-        <a href="Innovate 1.jpg" target="_blank">
-           <img src="Innovate 1.jpg" alt="Click to view full photo" width="300">
+        <a href="Innovate%201.jpg" target="_blank">
+           <img src="Innovate%201.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item" >
-        <a href="Innovate 2.jpg" target="_blank">
-           <img src="Innovate 2.jpg" alt="Click to view full photo" width="300">
+      <figure class="gallery-item">
+        <a href="Innovate%202.jpg" target="_blank">
+           <img src="Innovate%202.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item" >
-        <a href="Innovate 3.jpg" target="_blank">
-           <img src="Innovate 3.jpg" alt="Click to view full photo" width="300">
+      <figure class="gallery-item">
+        <a href="Innovate%203.jpg" target="_blank">
+           <img src="Innovate%203.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item" >
-        <a href="Innovate 4.jpg" target="_blank">
-           <img src="Innovate 4.jpg" alt = "Click to view full photo" width="300">
+      <figure class="gallery-item">
+        <a href="Innovate%204.jpg" target="_blank">
+           <img src="Innovate%204.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-    
-    </div>
+      <figure class="gallery-item">
+        <a href="Guimbal.jpg" target="_blank">
+           <img src="Guimbal.jpg" alt="Click to view full photo" width="300">
+        </a>
+        <figcaption>Guimbal RHU</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <a href="Research Project.jpg" target="_blank">
+           <img src="Research Project.jpg" alt="Click to view full photo" width="300">
+        </a>
+        <figcaption>USA Research Project</figcaption>
+      </figure>
+      </div>
   </section>
 
+  
+
   <section id="projects" class="sec">
-    <div class="sec-head"><span class="idx mono">A6</span><h2>Projects</h2><div class="rule"></div></div>
+    <div class="sec-head"><span class="idx mono">A7</span><h2>Projects</h2><div class="rule"></div></div>
     <p class="intro">Things I've built, start to finish. </p>
 
     <div class="projects-grid">
       <!-- EDIT HERE: duplicate this .project-card block for each new project -->
       <div class="project-card">
         <div class="cap-label">// project.log — 01</div>
-        <h3><a href="https://sites.google.com/view/concepcion-booking-form/home?pli=1 target="_blanka>Online Booking System</h3></a>
+        <h3><a href="https://sites.google.com/view/concepcion-booking-form/home?pli=1" target="_blank">Online Booking System</a></h3>
         <div class="org"> Concepcion Tourism Office</div> 
         <p>Designed and built a JavaScript-based online booking tool from concept to a fully working
         system, cutting down guest wait times for resorts and island trips around town.</p>
@@ -825,7 +858,7 @@
 
       <div class="project-card">
         <div class="cap-label">// project.log — 02</div>
-        <h3><a href="FULL-RESEARCH-FINAL.pdf" target="_blank"> pHydrolite (DEVELOPMENT OF SMART DRINKING WATER QUALITY MONITORING SYSTEM) </h3></a>
+        <h3><a href="FULL-RESEARCH-FINAL.pdf" target="_blank">pHydrolite (Development of Smart Drinking Water Quality Monitoring System)</a></h3>
         <div class="org">Research Project/Research Thesis</div>
         <p>Poor management of sanitation services is a growing problem that is contaminating drinking water in households. 
           Apart from other related studies, the researchers have different real-time monitoring of drinking water quality,
@@ -866,7 +899,7 @@
   const fill = document.getElementById('scrubFill');
   const tc = document.getElementById('tcReadout');
   const chapterLinks = document.querySelectorAll('.chapters a');
-  const sections = ['about','experience','skills','works','gallery','projects','contact'].map(id => document.getElementById(id));
+  const sections = ['about','experience','skills','works','gallery','video-gallery','projects','contact'].map(id => document.getElementById(id));
 
   function toTimecode(pct){
     // fabricate a 3-minute "runtime" mapped to scroll percentage, HH:MM:SS:FF style
