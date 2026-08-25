@@ -442,22 +442,6 @@
     padding: 10px 14px; font-family:'JetBrains Mono',monospace; font-size: 11.5px; color: var(--text-dim);
   }
 
-  /* ---------- VIDEO GALLERY ---------- */
-  .video-grid{
-    display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 22px;
-  }
-  .video-item{
-    margin:0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-    overflow:hidden;
-  }
-  .video-item video{
-    width:100%; aspect-ratio: 16/9; object-fit: cover; display:block; background:#000;
-  }
-  .video-item figcaption{
-    padding: 10px 14px; font-family:'JetBrains Mono',monospace; font-size: 11.5px; color: var(--text-dim);
-  }
-
   /* ---------- PROJECTS ---------- */
   .projects-grid{
     display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -471,6 +455,55 @@
   .project-card .org{ color: var(--teal); font-size: 13px; font-family:'JetBrains Mono',monospace; margin-bottom: 14px; }
   .project-card p{ color: var(--text-dim); font-size: 15px; line-height: 1.75; margin:0 0 18px; }
   .project-card .tags{ margin:0; }
+
+  /* ---------- SCROLL-TRIGGERED MOTION ---------- */
+  /* Base: every reveal-* element starts hidden/offset, and animates to its resting state
+     when the .in-view class is added by the IntersectionObserver in the script below. */
+  .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-fade{
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(.2,.7,.3,1), transform 0.8s cubic-bezier(.2,.7,.3,1), filter 0.8s ease;
+    will-change: opacity, transform;
+  }
+  .reveal-up.in-view, .reveal-left.in-view, .reveal-right.in-view,
+  .reveal-scale.in-view, .reveal-blur.in-view, .reveal-fade.in-view{ opacity: 1; }
+
+  /* Rises up from below — used for the Timeline and Video Gallery */
+  .reveal-up{ transform: translateY(36px); }
+  .reveal-up.in-view{ transform: translateY(0); }
+
+  /* Slides in from the left — used for About */
+  .reveal-left{ transform: translateX(-48px); }
+  .reveal-left.in-view{ transform: translateX(0); }
+
+  /* Slides in from the right — used for The Feed */
+  .reveal-right{ transform: translateX(48px); }
+  .reveal-right.in-view{ transform: translateX(0); }
+
+  /* Scales up from slightly small — used for Skills */
+  .reveal-scale{ transform: scale(0.85); }
+  .reveal-scale.in-view{ transform: scale(1); }
+
+  /* Soft focus pull — used for Gallery, feels like a photo developing into focus */
+  .reveal-blur{ transform: translateY(20px) scale(1.03); filter: blur(10px); }
+  .reveal-blur.in-view{ transform: translateY(0) scale(1); filter: blur(0); }
+
+  /* Plain fade, no movement — used for Projects and Contact, a quieter close to the page */
+  .reveal-fade{ transform: none; }
+  .reveal-fade.in-view{ opacity: 1; }
+  .text-reveal{ display:inline-block; overflow:hidden; vertical-align: top; }
+  .text-reveal .text-reveal-inner{
+    display:inline-block;
+    transform: translateY(115%);
+    transition: transform 0.85s cubic-bezier(.16,.9,.25,1);
+  }
+  .text-reveal.in-view .text-reveal-inner{ transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-fade{
+      opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important;
+    }
+    .text-reveal .text-reveal-inner{ transform: none !important; transition: none !important; }
+  }
 
   /* ---------- CONTACT / OUTRO ---------- */
   #contact{ border-bottom:none; padding-bottom: 80px; }
@@ -520,7 +553,6 @@
       <a href="#skills">Skills</a>
       <a href="#works">Feed</a>
       <a href="#gallery">Gallery</a>
-      <a href="#video-gallery">Videos</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -533,7 +565,7 @@
     <div class="hero-grid">
       <div>
         <div class="hero-tag"><span class="dot"></span> GUIMBAL, ILOILO, PH</div>
-        <h1 class="name">REXMAR JIM<br><span class="last">MATULAC</span></h1>
+        <h1 class="name"><span class="text-reveal"><span class="text-reveal-inner">REXMAR JIM</span></span><br><span class="text-reveal"><span class="text-reveal-inner last">MATULAC</span></span></h1>
         <p class="hero-role">
           <strong>IT Support &amp; Social Media Content Specialist, Video Editor</strong> — Computer Engineering graduate
           with hands-on experience in IT support, data handling, and system monitoring. Strong in data accuracy, documentation, 
@@ -564,9 +596,9 @@
   </section>
 
   <section id="about" class="sec">
-    <div class="sec-head"><span class="idx mono">A1</span><h2>About</h2><div class="rule"></div></div>
+    <div class="sec-head"><span class="idx mono">A1</span><h2><span class="text-reveal"><span class="text-reveal-inner">About</span></span></h2><div class="rule"></div></div>
     <div class="grid">
-      <div>
+      <div class="reveal-left">
         <p>I started out on the technical side — troubleshooting systems, encoding records, keeping
         infrastructure quiet and reliable. Then I landed on <strong>Innovate Iloilo</strong>, a city
         government project, and ended up running its website and social platforms almost by accident.
@@ -578,7 +610,7 @@
         booking system from the ground up to cut down guest wait times, so the IT side never really
         left, it just moved behind the scenes. <strong>Everything below is proof of both halves.</strong></p>
       </div>
-      <div class="facts">
+      <div class="facts reveal-left">
         <div class="row"><div class="k">Location</div><div class="v">Brgy. Particion, Guimbal, Iloilo</div></div>
         <div class="row"><div class="k">Education</div><div class="v">BS Computer Engineering — University of San Agustin, 2019–2024</div></div>
         <div class="row"><div class="k">Recent Job</div><div class="v">Tourism Staff (Marketing) / IT Staff — Concepcion Tourism Office</div></div>
@@ -588,7 +620,7 @@
       </div>
     </div>
 
-    <div class="caption-card" style="margin-top:40px;">
+    <div class="caption-card reveal-left" style="margin-top:40px;">
       <div class="cap-label">// worked-at.log — places I've worked</div>
       <h3 class="sub-head">Places I've Worked</h3>
       <ul class="worked-list">
@@ -600,9 +632,9 @@
   </section>
 
   <section id="experience" class="sec">
-    <div class="sec-head"><span class="idx mono">A2</span><h2>On the Timeline</h2><div class="rule"></div></div>
+    <div class="sec-head"><span class="idx mono">A2</span><h2><span class="text-reveal"><span class="text-reveal-inner">On the Timeline</span></span></h2><div class="rule"></div></div>
     <div class="timeline">
-      <div class="clip">
+      <div class="clip reveal-up">
         <div class="tc-col">2026</div>
         <div class="body">
           <h3>Tourism Staff (Marketing &amp; Promotions) / IT Staff</h3>
@@ -614,7 +646,7 @@
           that cuts guest wait times, and assist visitors directly with itineraries around town.</p>
         </div>
       </div>
-      <div class="clip">
+      <div class="clip reveal-up">
         <div class="tc-col">2024–2025</div>
         <div class="body">
           <h3>Project Administrative Aide (IT Support)</h3>
@@ -624,7 +656,7 @@
           coordination with project partners so nothing dropped mid-campaign.</p>
         </div>
       </div>
-      <div class="clip">
+      <div class="clip reveal-up">
         <div class="tc-col">2023–2024</div>
         <div class="body">
           <h3>IT Personnel &amp; Data Encoder</h3>
@@ -633,7 +665,7 @@
           digit had real consequences. Built the habit of checking my own work before anyone else has to.</p>
         </div>
       </div>
-      <div class="clip">
+      <div class="clip reveal-up">
         <div class="tc-col">2022–2023</div>
         <div class="body">
           <h3>Information Technology Intern</h3>
@@ -646,8 +678,8 @@
   </section>
 
   <section id="skills" class="sec">
-    <div class="sec-head"><span class="idx mono">A3</span><h2>Skills</h2><div class="rule"></div></div>
-    <div class="caption-card">
+    <div class="sec-head"><span class="idx mono">A3</span><h2><span class="text-reveal"><span class="text-reveal-inner">Skills</span></span></h2><div class="rule"></div></div>
+    <div class="caption-card reveal-scale">
       <div class="cap-label">// caption.txt — tags used across every project</div>
       <div class="tags">
         <span class="tag">#Communication</span>
@@ -664,7 +696,7 @@
       </div>
     </div>
 
-    <div class="caption-card" style="margin-top:20px;">
+    <div class="caption-card reveal-scale" style="margin-top:20px;">
       <div class="cap-label">// Trainings and Certificates</div>
       <div class="tags">
         <span class="tag">HP LIFE Online Course — Social Media Marketing</span>
@@ -674,70 +706,66 @@
   </section>
 
   <section id="works" class="sec">
-    <div class="sec-head"><span class="idx mono">A4</span><h2>The Feed</h2><div class="rule"></div></div>
+    <div class="sec-head"><span class="idx mono">A4</span><h2><span class="text-reveal"><span class="text-reveal-inner">The Feed</span></span></h2><div class="rule"></div></div>
     <p class="intro">Every project I've shot, edited, or built pulled straight from the source.
     </p>
 
     <div class="cap-label" style="margin: 32px 0 16px;">// materials.log</div>
     <h3 class="sub-head">Publication Materials and Video Edits</h3>
     <div class="gallery-grid">
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Lin%20ay.jpg" target="_blank">
            <img src="Lin%20ay.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Steam%20Fair%202024.jpg" target="_blank">
            <img src="Steam%20Fair%202024.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Talabahan%20Food%20poster.jpg" target="_blank">
            <img src="Talabahan%20Food%20poster.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Mother%27s%20Day.jpg" target="_blank">
            <img src="Mother%27s%20Day.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Talabahan%20Menu%202.jpg" target="_blank">
            <img src="Talabahan%20Menu%202.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Earth%20Day.jpg" target="_blank">
            <img src="Earth%20Day.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Tourist%20Arrival.jpg" target="_blank">
            <img src="Tourist%20Arrival.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Guest.jpg" target="_blank">
            <img src="Guest.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Holy%20Week%20Tourist.jpg" target="_blank">
            <img src="Holy%20Week%20Tourist.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-right">
         <a href="Earth%20Hour.jpg" target="_blank">
            <img src="Earth%20Hour.jpg" alt="Click to view full photo" width="300">
         </a>
       </figure>
-     >
     </div>
- 
-    </div>
-  </section>
 
-    <div class="caption-card" style="margin-bottom:40px;">
+    <div class="caption-card reveal-right" style="margin-bottom:40px;">
       <div class="cap-label">// portfolio.log — full archive</div>
       <div class="channels">
         <a href="https://drive.google.com/drive/folders/19nZjFoo8mkAvJ_njZ-ilDbnNARwrirBd?usp=sharing" target="_blank" rel="noopener" class="channel">
@@ -747,9 +775,10 @@
           <span class="arrow">→</span>
         </a>
       </div>
+      <div class="linkbar-hint" style="margin-top:12px; margin-bottom:0;">The videos I edited are in the Google Drive link — Click to view.</div>
     </div>
 
-    <div class="caption-card" style="margin-bottom:40px;">
+    <div class="caption-card reveal-right" style="margin-bottom:40px;">
       <div class="cap-label">// channels.log — pages managed end to end</div>
       <div class="channels">
         <a href="https://www.facebook.com/CTO2022/" target="_blank" rel="noopener" class="channel">
@@ -770,82 +799,80 @@
   </section>
 
   <section id="gallery" class="sec">
-    <div class="sec-head"><span class="idx mono">A5</span><h2>Gallery</h2><div class="rule"></div></div>
+    <div class="sec-head"><span class="idx mono">A5</span><h2><span class="text-reveal"><span class="text-reveal-inner">Gallery</span></span></h2><div class="rule"></div></div>
     <p class="intro">Photo proof of the work — event coverage, shoots, and the day-to-day.</p>
 
     <div class="gallery-grid">
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Tourism%201.jpg" target="_blank">
            <img src="Tourism%201.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Tourism%202.jpg" target="_blank">
            <img src="Tourism%202.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Tourism%203.jpg" target="_blank">
            <img src="Tourism%203.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Tourism%204.jpg" target="_blank">
            <img src="Tourism%204.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Concepcion Tourism Office</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Innovate%201.jpg" target="_blank">
            <img src="Innovate%201.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Innovate%202.jpg" target="_blank">
            <img src="Innovate%202.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Innovate%203.jpg" target="_blank">
            <img src="Innovate%203.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Innovate%204.jpg" target="_blank">
            <img src="Innovate%204.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Innovate Iloilo</figcaption>
       </figure>
-      <figure class="gallery-item">
+      <figure class="gallery-item reveal-blur">
         <a href="Guimbal.jpg" target="_blank">
            <img src="Guimbal.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>Guimbal RHU</figcaption>
       </figure>
-      <figure class="gallery-item">
-        <a href="Research Project.jpg" target="_blank">
-           <img src="Research Project.jpg" alt="Click to view full photo" width="300">
+      <figure class="gallery-item reveal-blur">
+        <a href="Research%20Project.jpg" target="_blank">
+           <img src="Research%20Project.jpg" alt="Click to view full photo" width="300">
         </a>
         <figcaption>USA Research Project</figcaption>
       </figure>
       </div>
   </section>
 
-  
-
   <section id="projects" class="sec">
-    <div class="sec-head"><span class="idx mono">A7</span><h2>Projects</h2><div class="rule"></div></div>
+    <div class="sec-head"><span class="idx mono">A6</span><h2><span class="text-reveal"><span class="text-reveal-inner">Projects</span></span></h2><div class="rule"></div></div>
     <p class="intro">Things I've built, start to finish. </p>
 
     <div class="projects-grid">
       <!-- EDIT HERE: duplicate this .project-card block for each new project -->
-      <div class="project-card">
+      <div class="project-card reveal-fade">
         <div class="cap-label">// project.log — 01</div>
         <h3><a href="https://sites.google.com/view/concepcion-booking-form/home?pli=1" target="_blank">Online Booking System</a></h3>
         <div class="org"> Concepcion Tourism Office</div> 
@@ -858,7 +885,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card reveal-fade">
         <div class="cap-label">// project.log — 02</div>
         <h3><a href="FULL-RESEARCH-FINAL.pdf" target="_blank">pHydrolite (Development of Smart Drinking Water Quality Monitoring System)</a></h3>
         <div class="org">Research Project/Research Thesis</div>
@@ -878,12 +905,12 @@
 
   <section id="contact" class="sec">
     <div class="grid">
-      <div>
-        <h2 class="big">Let's Make<br>Something.</h2>
+      <div class="reveal-fade">
+        <h2 class="big"><span class="text-reveal"><span class="text-reveal-inner">Let's Make</span></span><br><span class="text-reveal"><span class="text-reveal-inner">Something.</span></span></h2>
         <p>Open to social media content, video editing roles and IT support — whether remote, hybrid, or on-site around
         Iloilo. Reachable any day of the week; I keep my inbox in better order than most of my footage.</p>
       </div>
-      <div class="contact-list">
+      <div class="contact-list reveal-fade">
         <a href="tel:+639668028540"><span class="k">Phone</span>0966 802 8540<span class="arrow">→</span></a>
         <a href="mailto:rexmarm@gmail.com"><span class="k">Email</span>rexmarm@gmail.com<span class="arrow">→</span></a>
         <a href="https://www.facebook.com/rexmarjim.matulac.1" target="_blank" rel="noopener"><span class="k">Facebook</span>rexmarjim.matulac.1<span class="arrow">→</span></a>
@@ -901,7 +928,7 @@
   const fill = document.getElementById('scrubFill');
   const tc = document.getElementById('tcReadout');
   const chapterLinks = document.querySelectorAll('.chapters a');
-  const sections = ['about','experience','skills','works','gallery','video-gallery','projects','contact'].map(id => document.getElementById(id));
+  const sections = ['about','experience','skills','works','gallery','projects','contact'].map(id => document.getElementById(id));
 
   function toTimecode(pct){
     // fabricate a 3-minute "runtime" mapped to scroll percentage, HH:MM:SS:FF style
@@ -933,6 +960,36 @@
   }
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // ---- Scroll-triggered motion: each section's cards/text animate in as they're scrolled to ----
+  const motionEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-fade, .text-reveal');
+
+  // stagger items that sit in the same grid/list so they cascade rather than popping together
+  const staggerGroups = document.querySelectorAll('.gallery-grid, .projects-grid, .timeline, .channels');
+  const revealClassNames = ['reveal-up','reveal-left','reveal-right','reveal-scale','reveal-blur','reveal-fade'];
+  staggerGroups.forEach(group => {
+    Array.from(group.children).forEach((child, i) => {
+      const isMotionEl = revealClassNames.some(c => child.classList.contains(c));
+      if(isMotionEl){
+        child.style.transitionDelay = Math.min(i * 90, 500) + 'ms';
+      }
+    });
+  });
+
+  if('IntersectionObserver' in window){
+    const motionObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    motionEls.forEach(el => motionObserver.observe(el));
+  } else {
+    // fallback: just show everything if the browser can't do IntersectionObserver
+    motionEls.forEach(el => el.classList.add('in-view'));
+  }
 </script>
 
 </body>
